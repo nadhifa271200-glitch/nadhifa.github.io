@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Halaman profil pribadi Nadhifa.">
+  <title>Nadhifa | Profil Pribadi</title>
+  <style>
+    :root {
+      --pink: #e88aa8;
+      --pink-dark: #c85f83;
+      --pink-light: #fff0f5;
+      --pink-pale: #fff8fa;
+      --text: #44343b;
+      --muted: #796b71;
+      --white: #ffffff;
+      --line: #f4d6e0;
+      --shadow: 0 12px 32px rgba(166, 84, 113, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fff8fa 0%, #fff 55%, #fff5f8 100%);
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    .container { width: min(1080px, 91%); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, .92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--pink-dark);
+      text-decoration: none;
+      letter-spacing: -.8px;
+    }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 22px; }
+    .nav-links a {
+      font-size: .93rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--pink-dark); }
+
+    .hero { padding: 78px 0 70px; overflow: hidden; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 52px;
+    }
+    .eyebrow {
+      display: inline-block;
+      color: var(--pink-dark);
+      background: var(--pink-light);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .3px;
+    }
+    h1 {
+      margin: 16px 0 14px;
+      font-size: clamp(2.8rem, 7vw, 5.1rem);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      color: var(--pink-dark);
+    }
+    .hero p { max-width: 570px; color: var(--muted); font-size: 1.08rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid var(--pink);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .button.primary { color: white; background: var(--pink); }
+    .button.secondary { color: var(--pink-dark); background: white; }
+
+    .portrait-wrap {
+      position: relative;
+      width: min(100%, 365px);
+      aspect-ratio: 4 / 5;
+      margin: 0 auto;
+      padding: 12px;
+      border: 2px solid #f3bdd0;
+      border-radius: 48% 48% 42% 42%;
+      background: linear-gradient(145deg, #ffe1eb, #fff8fa);
+      box-shadow: var(--shadow);
+    }
+    .portrait {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 28px;
+      color: var(--pink-dark);
+      background:
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,.95) 0 7%, transparent 7.5%),
+        radial-gradient(circle at 80% 75%, rgba(255,255,255,.75) 0 9%, transparent 9.5%),
+        linear-gradient(145deg, #f9c8d8, #fff0f5 55%, #f6dce5);
+    }
+    .portrait .flower { font-size: 3.6rem; line-height: 1.2; }
+    .portrait small { display: block; margin-top: 10px; color: #986277; }
+
+    section { padding: 62px 0; }
+    .section-heading { text-align: center; margin-bottom: 30px; }
+    .section-heading .ornament { color: var(--pink); font-size: 1.45rem; line-height: 1; }
+    h2 { margin: 8px 0; color: var(--pink-dark); font-size: clamp(1.8rem, 4vw, 2.35rem); }
+    .section-heading p { color: var(--muted); margin: 0 auto; max-width: 620px; }
+    .about-card {
+      max-width: 820px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 22px;
+      align-items: center;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,.85);
+      box-shadow: var(--shadow);
+    }
+    .icon-circle {
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--pink-dark);
+      background: var(--pink-light);
+      font-size: 1.8rem;
+    }
+    .about-card p { margin: 0; color: var(--muted); }
+
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .interest-card {
+      padding: 25px 22px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+    .interest-card .symbol { font-size: 1.8rem; }
+    .interest-card h3 { margin: 9px 0 5px; color: var(--pink-dark); }
+    .interest-card p { margin: 0; color: var(--muted); font-size: .96rem; }
+
+    .contact-box {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px;
+      text-align: center;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #fff0f5, #fff9fb);
+      border: 1px solid var(--line);
+    }
+    .contact-box p { color: var(--muted); }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .contact-links a {
+      padding: 9px 15px;
+      border-radius: 999px;
+      border: 1px solid #efbfd0;
+      background: white;
+      color: var(--pink-dark);
+      text-decoration: none;
+      font-weight: 650;
+    }
+    footer { padding: 24px 0; text-align: center; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }
+    footer span { color: var(--pink-dark); }
+
+    @media (max-width: 720px) {
+      .nav { padding: 12px 0; align-items: flex-start; flex-direction: column; gap: 8px; }
+      .nav-links { gap: 14px; }
+      .hero { padding: 48px 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero-copy { text-align: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .actions { justify-content: center; }
+      .portrait-wrap { max-width: 285px; }
+      .interest-grid { grid-template-columns: 1fr; }
+      .about-card { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 24px; }
+      .contact-box { padding: 25px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav container" aria-label="Navigasi utama">
+      <a class="brand" href="#beranda">Nadhifa ♡</a>
+      <div class="nav-links">
+        <a href="#beranda">Beranda</a>
+        <a href="#tentang">Tentang Saya</a>
+        <a href="#minat">Minat</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">SELAMAT DATANG DI HALAMAN SAYA</span>
+          <h1>Halo, saya<br>Nadhifa <span aria-hidden="true">♡</span></h1>
+          <p>
+            Senang bisa menyambut kamu di halaman pribadi saya.
+            Di sini, saya ingin berbagi cerita, minat, dan hal-hal
+            yang ingin saya kenalkan kepada pengunjung.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#tentang">Kenali Saya</a>
+            <a class="button secondary" href="#kontak">Hubungi Saya</a>
+          </div>
+        </div>
+
+        <!-- Ganti area ini dengan foto sendiri jika diinginkan. -->
+        <div class="portrait-wrap" aria-label="Tempat foto profil">
+          <div class="portrait">
+            <div>
+              <div class="flower" aria-hidden="true">🌸</div>
+              <strong>Foto Profil</strong>
+              <small>Ganti bagian ini dengan foto kamu</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang">
+      <div class="container">
+        <div class="section-heading">
+          <div class="ornament" aria-hidden="true">— ♡ —</div>
+          <h2>Tentang Saya</h2>
+          <p>Sedikit pengantar tentang halaman pribadi ini.</p>
+        </div>
+        <div class="about-card">
+          <div class="icon-circle" aria-hidden="true">♡</div>
+          <p>
+            Saya Nadhifa, pribadi yang senang belajar, mengenal hal-hal baru,
+            dan terus mengembangkan diri. Saya percaya bahwa setiap pengalaman,
+            baik besar maupun sederhana, selalu membawa pelajaran berharga.
+            Melalui halaman ini, saya ingin berbagi sedikit cerita dan hal-hal
+            positif yang menjadi bagian dari perjalanan saya.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="minat">
+      <div class="container">
+        <div class="section-heading">
+          <div class="ornament" aria-hidden="true">— ✿ —</div>
+          <h2>Minat & Cerita</h2>
+          <p>Ubah contoh di bawah ini agar sesuai dengan minatmu.</p>
+        </div>
+        <div class="interest-grid">
+          <article class="interest-card">
+            <div class="symbol" aria-hidden="true">📖</div>
+            <h3>Hal yang Saya Pelajari</h3>
+            <p>Saya senang menambah wawasan, mencoba keterampilan baru, dan belajar dari pengalaman sehari-hari. Bagi saya, proses belajar adalah kesempatan untuk terus berkembang.</p>
+          </article>
+          <article class="interest-card">
+            <div class="symbol" aria-hidden="true">🌷</div>
+            <h3>Hal yang Saya Sukai</h3>
+            <p>Saya menyukai hal-hal sederhana yang membawa kebahagiaan, waktu yang berkualitas, serta suasana yang nyaman, hangat, dan positif.</p>
+          </article>
+          <article class="interest-card">
+            <div class="symbol" aria-hidden="true">✨</div>
+            <h3>Harapan Saya</h3>
+            <p>Saya ingin terus bertumbuh menjadi pribadi yang lebih baik, berani mencoba hal baru, dan meraih tujuan secara bertahap dengan usaha dan doa.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak">
+      <div class="container">
+        <div class="section-heading">
+          <div class="ornament" aria-hidden="true">— ♡ —</div>
+          <h2>Kontak</h2>
+          <p>Tambahkan cara menghubungi kamu jika memang ingin dibagikan secara publik.</p>
+        </div>
+        <div class="contact-box">
+          <h3>Senang bisa terhubung denganmu!</h3>
+          <p>Ganti tautan contoh di bawah dengan akun milikmu. Hapus tautan yang tidak ingin ditampilkan.</p>
+          <div class="contact-links">
+            <a href="mailto:nadhifa271200@gmail.com" aria-label="Kirim email ke Nadhifa">✉ nadhifa271200@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Dibuat dengan <span>♡</span> oleh Nadhifa · <span id="tahun"></span>
+  </footer>
+  <script>
+    document.getElementById("tahun").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
